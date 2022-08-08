@@ -1,13 +1,11 @@
 import './App.css';
-import { BookList, OnBookSelected } from './components/BookList';
-import { book } from './data/books';
+import { BookDetail } from './components/BookDetail';
 
 function App() {
-  const onBookSelected: OnBookSelected = (book) => alert(book.price);
-
   return (
     <div className="App">
-      <BookList books={book} onBookSelected={onBookSelected} />
+      {/* <BookList books={book} onBookSelected={onBookSelected} /> */}
+      <BookDetail />
     </div>
   );
 }
