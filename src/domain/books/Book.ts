@@ -1,8 +1,10 @@
+export type ISBN = string;
+
 export interface Book {
   id: string;
   title: string;
   subtitle: string;
-  isbn: string;
+  isbn: ISBN;
   abstract: string;
   author: string;
   publisher: string;
