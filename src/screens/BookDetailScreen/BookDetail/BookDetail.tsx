@@ -1,5 +1,5 @@
 import React from 'react';
-import { Book } from '../../domain/books';
+import { Book } from '../../../domain/books';
 
 export interface BookDetailProps {
   book: Book;
@@ -8,9 +8,7 @@ export interface BookDetailProps {
 export const BookDetail: React.FC<BookDetailProps> = ({ book }) => {
   return (
     <div>
-      <h2>
-        Book with ISBN: {book.isbn} - {book.title}
-      </h2>
+      <h3>{book.title}</h3>
       <p>{book.abstract}</p>
     </div>
   );

@@ -1,12 +1,19 @@
-import { useState } from 'react';
-import { Link, Redirect, Route, Switch } from 'react-router-dom';
+import { useCallback, useState } from 'react';
+import { Link, Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import './App.css';
 import { CounterProvider } from './domain/counter';
-import { BooksScreen } from './screens/BooksScreen';
+import { BookDetailScreen } from './screens/BookDetailScreen';
+import { BooksScreen, OnBookSelected } from './screens/BooksScreen';
 import { PlaygroundScreen } from './screens/PlaygroundScreen';
 
 function App() {
   const [count, setCount] = useState(0);
+  const history = useHistory();
+
+  const onBookSelected: OnBookSelected = useCallback(
+    (book) => history.push(`/books/${book.isbn}`),
+    [history],
+  );
 
   return (
     <CounterProvider
@@ -30,7 +37,8 @@ function App() {
         </nav>
         <Switch>
           <Route path="/playground" component={PlaygroundScreen} />
-          <Route path="/books" component={BooksScreen} />
+          <Route path="/books/:isbn" component={BookDetailScreen} />
+          <Route path="/books" render={() => <BooksScreen onBookSelected={onBookSelected} />} />
           <Redirect to="/books" />
         </Switch>
       </div>

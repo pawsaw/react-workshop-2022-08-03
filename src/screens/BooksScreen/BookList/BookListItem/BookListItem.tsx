@@ -1,6 +1,6 @@
 import { Book } from '../../../../domain/books';
 import { useTheme } from '../../../../theme';
-import { OnBookSelected } from '../OnBookSelected';
+import { OnBookSelected } from '../../OnBookSelected';
 
 export interface BookListItemProps {
   book: Book;
@@ -15,9 +15,18 @@ export const BookListItem: React.FC<BookListItemProps> = ({ book, onBookSelected
       style={{
         color: primaryColor,
       }}
-      onClick={() => onBookSelected(book)}
     >
-      {book.title}
+      {book.title} -{' '}
+      <span
+        onClick={() => onBookSelected(book)}
+        role="link"
+        style={{
+          color: 'blue',
+          cursor: 'pointer',
+        }}
+      >
+        Details
+      </span>
     </div>
   );
 };
