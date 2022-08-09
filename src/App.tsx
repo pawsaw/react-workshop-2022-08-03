@@ -1,15 +1,11 @@
 import { useState } from 'react';
+import { Link, Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
-import { BookList } from './components/BookList';
-import { Counter } from './components/Counter';
-import { useBooks } from './domain/books';
 import { CounterProvider } from './domain/counter';
-import { ThemeProvider } from './theme';
+import { BooksScreen } from './screens/BooksScreen';
+import { PlaygroundScreen } from './screens/PlaygroundScreen';
 
 function App() {
-  const { books, reload } = useBooks();
-  // const { book } = useBook('1001606140805');
-
   const [count, setCount] = useState(0);
 
   return (
@@ -22,21 +18,21 @@ function App() {
       }}
     >
       <div className="App">
-        <Counter />
-        {books ? (
-          <ThemeProvider
-            theme={{
-              primaryColor: 'green',
-              secondaryColor: 'green',
-            }}
-          >
-            <BookList books={books} />
-          </ThemeProvider>
-        ) : (
-          <span>Loading books...</span>
-        )}
-        <button onClick={reload}>Reload Books</button>
-        {/* {book ? <BookDetail book={book} /> : <span>Loading</span>} */}
+        <nav>
+          <ul>
+            <li>
+              <Link to="/playground">Playground</Link>
+            </li>
+            <li>
+              <Link to="/books">Books</Link>
+            </li>
+          </ul>
+        </nav>
+        <Switch>
+          <Route path="/playground" component={PlaygroundScreen} />
+          <Route path="/books" component={BooksScreen} />
+          <Redirect to="/books" />
+        </Switch>
       </div>
     </CounterProvider>
   );

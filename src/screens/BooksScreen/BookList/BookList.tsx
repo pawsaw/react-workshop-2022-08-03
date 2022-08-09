@@ -1,6 +1,6 @@
-import { Book } from '../../domain/books';
-import { useCounter } from '../../domain/counter';
-import { noop } from '../../util/noop';
+import { Book } from '../../../domain/books';
+import { useCounter } from '../../../domain/counter';
+import { noop } from '../../../util/noop';
 import { BookListItem } from './BookListItem/BookListItem';
 import { OnBookSelected } from './OnBookSelected';
 
