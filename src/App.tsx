@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 import { Link, Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import './App.css';
+import { Counter } from './components/Counter';
 import { CounterProvider } from './domain/counter';
 import { BookDetailScreen } from './screens/BookDetailScreen';
 import { BooksScreen, OnBookSelected } from './screens/BooksScreen';
@@ -35,6 +36,7 @@ function App() {
             </li>
           </ul>
         </nav>
+        <Counter />
         <Switch>
           <Route path="/playground" component={PlaygroundScreen} />
           <Route path="/books/:isbn" component={BookDetailScreen} />

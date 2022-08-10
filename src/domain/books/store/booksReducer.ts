@@ -1,3 +1,4 @@
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Book } from '../Book';
 
 export interface BooksState {
@@ -8,11 +9,18 @@ export const intialBooksState: BooksState = {
   books: [],
 };
 
-export type AllBooksActions = unknown;
+export type AddBookAction = PayloadAction<Book[]>;
 
-export const booksReducer = (
-  state: BooksState = intialBooksState,
-  action: AllBooksActions,
-): BooksState => {
-  return state;
-};
+const booksSlice = createSlice({
+  name: 'books',
+  initialState: intialBooksState,
+  reducers: {
+    addBooks: (state: BooksState, action: AddBookAction): BooksState => ({
+      ...state,
+      books: [...action.payload],
+    }),
+  },
+});
+
+export const { addBooks } = booksSlice.actions;
+export const booksReducer = booksSlice.reducer;

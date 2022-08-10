@@ -1,5 +1,6 @@
 import React from 'react';
 import { useContext } from 'react';
+import { useSelector } from 'react-redux';
 import { noop } from '../../util/noop';
 import { Counter } from './Counter';
 

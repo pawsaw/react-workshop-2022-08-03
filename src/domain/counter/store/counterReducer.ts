@@ -1,16 +1,30 @@
+import { createSlice } from '@reduxjs/toolkit';
+import { useSelector } from 'react-redux';
+import { State } from '../../../store';
+
 export interface CounterState {
   count: number;
 }
 
-export const intialBooksState: CounterState = {
+export const intialCounterState: CounterState = {
   count: 0,
 };
 
-export type AllCounterActions = unknown;
+const counterSlice = createSlice({
+  name: 'counter',
+  initialState: intialCounterState,
+  reducers: {
+    increment: (state: CounterState) => ({
+      ...state,
+      count: state.count + 1,
+    }),
+    decrement: (state: CounterState) => ({
+      ...state,
+      count: state.count - 1,
+    }),
+    reset: (state: CounterState) => intialCounterState,
+  },
+});
 
-export const counterReducer = (
-  state: CounterState = intialBooksState,
-  action: AllCounterActions,
-): CounterState => {
-  return state;
-};
+export const counterReducer = counterSlice.reducer;
+export const { increment, decrement, reset } = counterSlice.actions;
